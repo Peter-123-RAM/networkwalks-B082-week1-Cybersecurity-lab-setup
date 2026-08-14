@@ -1,187 +1,201 @@
 Networkwalks B082 — Week 1 Cybersecurity Lab Setup
 
+"Cybersecurity" (https://img.shields.io/badge/Focus-Cybersecurity-red)
+"Platform" (https://img.shields.io/badge/Platform-Kali%20Linux-blue)
+"Virtualization" (https://img.shields.io/badge/Virtualization-VirtualBox-orange)
+"Network" (https://img.shields.io/badge/Network-10.0.0.0%2F24-green)
+
 Overview
 
-This repository documents the setup and configuration of a virtualized cybersecurity and ethical hacking laboratory for Networkwalks B082 — Week 1.
+This repository documents my Week 1 Cybersecurity and Ethical Hacking Lab Setup completed as part of the Networkwalks B082 training program.
 
-The lab uses Oracle VirtualBox to create an isolated environment for cybersecurity practice. Kali Linux serves as the primary security testing platform, while additional virtual machines provide target environments for networking, security testing, and ethical hacking exercises.
+The laboratory was built using Oracle VirtualBox with Kali Linux as the primary cybersecurity environment. A dedicated NAT Network was configured to provide controlled communication between virtual machines for authorized cybersecurity training and practical exercises.
 
 ---
 
 Objectives
 
-The objectives of this lab were to:
+The lab setup focused on:
 
-- Install the required virtualization and archive-management software.
-- Configure Oracle VirtualBox for cybersecurity laboratory use.
-- Create and configure a VirtualBox NAT Network.
-- Import and configure Kali Linux as a virtual machine.
-- Configure IP networking within the virtual laboratory.
-- Create a stable restore point using VM snapshots.
-- Configure additional virtual machines for future security exercises.
-- Verify communication between virtual machines using network connectivity tests.
+- Installing the required laboratory software.
+- Deploying Oracle VirtualBox as the virtualization platform.
+- Creating a dedicated VirtualBox NAT Network.
+- Importing and configuring Kali Linux.
+- Configuring static IPv4 networking within the virtual laboratory.
+- Verifying the network configuration.
+- Establishing a controlled environment for future cybersecurity and ethical hacking exercises.
 
 ---
 
 Lab Environment
 
 Component| Configuration
-Host Operating System| Windows
+Host Platform| Windows
 Hypervisor| Oracle VirtualBox
-Primary Security VM| Kali Linux
+Security Operating System| Kali Linux
 Network Type| NAT Network
-Virtual Network| "10.0.0.0/24"
-Network Testing| "ping"
+IPv4 Network| "10.0.0.0/24"
+Kali Linux IP| "10.0.0.2/24"
+Gateway| "10.0.0.1"
+DNS Server| "10.0.0.1"
 Archive Utility| 7-Zip
+Connectivity Test| "ping"
 
 ---
 
-Phase 1 — Core Lab Setup
+Phase 1 — Core Laboratory Setup
 
 1. 7-Zip Installation
 
-7-Zip was installed to provide support for extracting compressed virtual machine images and other laboratory resources.
+7-Zip was installed to support the extraction of compressed virtual machine images and other laboratory resources required during the setup process.
 
 ---
 
 2. Oracle VirtualBox Installation
 
-Oracle VirtualBox was installed as the virtualization platform for creating, configuring, and managing the cybersecurity laboratory's virtual machines.
+Oracle VirtualBox was installed and configured as the hypervisor for the cybersecurity laboratory.
 
-VirtualBox provides the isolated environment required to run multiple operating systems on the host computer.
+VirtualBox provides the virtualization layer required to run and manage isolated operating systems for cybersecurity practice.
 
 ---
 
-3. VirtualBox NAT Network Configuration
+3. NAT Network Configuration
 
-A dedicated NAT Network was created in VirtualBox to provide network connectivity between the virtual machines.
+A dedicated NAT Network was configured in VirtualBox to provide a private network environment for communication between virtual machines.
 
 Network Configuration
 
 Network Name: NATNetwork
 IPv4 Network: 10.0.0.0/24
+Gateway: 10.0.0.1
 
-The "10.0.0.0/24" network provides a private address space for communication between the laboratory machines while maintaining separation from the host's primary network environment.
-
----
-
-4. Kali Linux Virtual Machine
-
-Kali Linux was downloaded and imported into Oracle VirtualBox.
-
-Kali Linux was configured as the primary cybersecurity workstation for the laboratory. It provides the tools and environment required for subsequent penetration testing, vulnerability assessment, network analysis, and ethical hacking exercises.
+The "/24" prefix provides a private IPv4 network suitable for the laboratory environment.
 
 ---
 
-5. Kali Linux Network Configuration
+4. Kali Linux Deployment
 
-The Kali Linux virtual machine was configured to operate on the laboratory NAT Network.
+Kali Linux was imported into Oracle VirtualBox and configured as the primary cybersecurity workstation.
 
-The configured network uses the "10.0.0.0/24" address range, allowing Kali Linux to communicate with other virtual machines connected to the same virtual network.
+Kali Linux provides a specialized environment containing tools used for security assessment, network analysis, penetration testing, vulnerability assessment, and ethical hacking.
 
-Network configuration was verified from within Kali Linux using standard Linux networking utilities.
+Virtual Machine Configuration
 
----
+The configured Kali Linux virtual machine was allocated:
 
-6. Kali Linux Virtual Machine Snapshot
-
-A snapshot of the configured Kali Linux virtual machine was created after completing the initial setup.
-
-The snapshot provides a known-good restore point, allowing the virtual machine to be reverted to its configured state after future cybersecurity experiments or configuration changes.
+Memory: 4096 MB
+Processors: 2
+Virtual Disk: 50 GB
 
 ---
 
-Phase 2 — Additional Virtual Machines
+5. Kali Linux IPv4 Configuration
 
-Additional operating systems were prepared within VirtualBox to provide different environments for future cybersecurity and ethical hacking exercises.
+Kali Linux was configured with a manual IPv4 address within the laboratory network.
 
-The laboratory design includes:
+Network Configuration
 
-- Windows 11
-- Windows 10
-- Windows 7
-- Android 9.x
+IPv4 Address: 10.0.0.2
+Netmask: /24
+Gateway: 10.0.0.1
+DNS Server: 10.0.0.1
 
-These systems provide different target environments for practical security testing and network-based exercises.
+This configuration places the Kali Linux virtual machine within the "10.0.0.0/24" laboratory network.
 
----
+Configuration Evidence
 
-Network Connectivity Testing
-
-Connectivity between the virtual machines was tested using the "ping" utility.
-
-Example:
-
-ping <target-ip-address>
-
-The connectivity test was used to verify that machines connected to the configured NAT Network could communicate successfully.
+"Kali Linux IPv4 Configuration" (screenshots/03-kali-network-configuration.png)
 
 ---
 
-Virtual Lab Architecture
+6. Kali Linux Virtual Machine
+
+The Kali Linux virtual machine was successfully launched through Oracle VirtualBox.
+
+"Kali Linux Virtual Machine" (screenshots/01-kali-virtualbox.png)
+
+The virtual machine provides the primary environment for the cybersecurity exercises in the laboratory.
+
+---
+
+7. Kali Linux Boot Environment
+
+The Kali Linux boot environment was successfully initialized within the VirtualBox virtual machine.
+
+"Kali Linux Boot Environment" (screenshots/02-kali-boot.png)
+
+---
+
+Network Architecture
+
+The laboratory network is structured around a private VirtualBox NAT Network:
 
                     Host Computer
                          │
-                    VirtualBox
+                    Oracle VirtualBox
                          │
-                  NAT Network
-                  10.0.0.0/24
+                    NAT Network
+                    10.0.0.0/24
                          │
-          ┌──────────────┼──────────────┐
-          │              │              │
-       Kali Linux      Windows       Android
-       Security VM     Target VM      Target VM
+                  ┌──────┴──────┐
+                  │             │
+             Kali Linux     Other VMs
+             10.0.0.2       10.0.0.x
+             /24
+                  │
+             Gateway
+             10.0.0.1
 
-The architecture provides a controlled virtual environment for conducting cybersecurity and ethical hacking exercises.
+This architecture provides a controlled environment for authorized cybersecurity training.
+
+---
+
+Network Verification
+
+Network connectivity can be verified using the "ping" utility.
+
+Example:
+
+ping 10.0.0.1
+
+The purpose of the connectivity test is to confirm communication between the Kali Linux virtual machine and the configured network gateway or other authorized laboratory systems.
 
 ---
 
 Security Considerations
 
-The laboratory is designed for authorized cybersecurity training and educational purposes.
+This laboratory is intended strictly for authorized cybersecurity training, education, and ethical hacking practice.
 
-Using virtual machines provides an isolated environment in which security tools and techniques can be practiced without intentionally targeting unauthorized systems.
+Virtual machines provide a controlled environment for experimenting with security tools and networking techniques without intentionally targeting unauthorized systems.
 
-The environment should only be used against systems for which the user has explicit permission to perform security testing.
-
----
-
-Challenges and Resolutions
-
-During the laboratory setup, attention was required when configuring:
-
-- Virtual machine networking.
-- NAT Network parameters.
-- IP addressing.
-- Communication between virtual machines.
-- Virtual machine resource allocation.
-- Snapshot management.
-
-These configuration requirements were addressed through VirtualBox settings, operating-system network configuration, and connectivity testing.
+All security testing should be performed only against systems for which appropriate authorization has been obtained.
 
 ---
 
 Key Learning Outcomes
 
-By completing this laboratory, I gained practical experience in:
+Through this laboratory setup, I gained practical experience in:
 
 - Virtualization using Oracle VirtualBox.
-- Building an isolated cybersecurity laboratory.
-- Configuring virtual networks.
-- Understanding private IP addressing and CIDR notation.
-- Configuring Linux network interfaces.
-- Deploying Kali Linux in a virtualized environment.
-- Testing network connectivity between systems.
-- Creating and managing virtual machine snapshots.
-- Preparing controlled environments for cybersecurity and ethical hacking practice.
+- Deploying Kali Linux in a virtual environment.
+- Creating and configuring a NAT Network.
+- Working with private IPv4 addressing.
+- Understanding CIDR notation.
+- Configuring static IPv4 settings in Linux.
+- Configuring gateways and DNS.
+- Understanding virtual machine networking.
+- Establishing a controlled cybersecurity laboratory.
+- Preparing an environment for future ethical hacking and security testing exercises.
 
 ---
 
 Conclusion
 
-The Networkwalks B082 Week 1 laboratory established a functional virtual environment for cybersecurity and ethical hacking practice.
+The Networkwalks B082 Week 1 laboratory established the foundation for practical cybersecurity and ethical hacking training.
 
-The combination of Kali Linux, VirtualBox, NAT networking, and additional target operating systems provides a controlled foundation for subsequent practical exercises involving network security, vulnerability assessment, penetration testing, and defensive security.
+The completed setup combines Kali Linux, Oracle VirtualBox, and a dedicated "10.0.0.0/24" virtual network to provide a controlled environment for subsequent security exercises.
+
+This practical strengthened my understanding of virtualization, Linux networking, IP addressing, and secure laboratory design while preparing the environment for future cybersecurity challenges.
 
 ---
 
@@ -191,3 +205,24 @@ Adongo Peter Oduor
 
 Networkwalks B082
 Cybersecurity & Ethical Hacking
+
+---
+
+Repository Structure
+
+networkwalks-B082-week1-Cybersecurity-lab-setup/
+│
+├── README.md
+│
+└── screenshots/
+    ├── 01-kali-virtualbox.png
+    ├── 02-kali-boot.png
+    └── 03-kali-network-configuration.png
+
+---
+
+Training Program
+
+Networkwalks B082 — Week 1
+
+Focus: Cybersecurity & Ethical Hacking Lab Setup
